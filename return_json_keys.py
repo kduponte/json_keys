@@ -31,7 +31,7 @@ From (
     Select '{"key1": "value1", "key2": "value2","key3": "value3"}'::varchar(max) as annoying_json
   ) as a
   Cross Join (
-    Select (Row_Number() Over (Order By id))::int as index From {REPLACE WITH SCHEMA.TABLE} Limit 100
+    Select (Row_Number() Over (Order By id))::int as index From REPLACE WITH SCHEMA.TABLE Limit 100
   ) as b
   Where index <= scratch.json_num_keys(annoying_json)
 ) as a
